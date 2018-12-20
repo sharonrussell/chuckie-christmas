@@ -46,7 +46,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     this.load.image('sky', 'assets/snowsky.png');
-    this.load.image('ground', 'assets/snowbaseplatform.png');
+    this.load.image('ground', 'assets/snowplatform.png');
     this.load.image('platform', 'assets/snowplatform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/Snowball.png');
@@ -69,7 +69,7 @@ function create ()
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(400, 598, 'ground').setScale(4).refreshBody();
 
     //  Now let's create some ledges
     platforms.create(600, 400, 'platform');
@@ -193,14 +193,6 @@ function collectStar (player, star)
     //  Add and update the score
     score += 10;
 
-    if(score % 3 === 0){
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-    }
-
     scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0) //debug make sure we remove this later.
@@ -211,6 +203,12 @@ function collectStar (player, star)
         });
 
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
     }
 }
 
