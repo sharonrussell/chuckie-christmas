@@ -171,6 +171,15 @@ function update ()
     {
         player.setVelocityY(-330);
     }
+
+    if(score >= 300){
+        youWinText = this.add.text(16,550, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#fff' });
+        this.physics.pause();
+              player.setTint(0x0000);
+
+        player.anims.play('turn');
+        return;
+    }
 }
 
 function collectStar (player, star)
@@ -197,15 +206,11 @@ function collectStar (player, star)
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
         bomb.allowGravity = false;
-
-
     }
 }
 
 function hitBomb (player, bomb)
 {
-    
-
     livesLeft--;
  
      
