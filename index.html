@@ -54,7 +54,6 @@ function preload ()
 
 function create ()
 {
-
     livesLeft = 3;
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
@@ -127,8 +126,6 @@ function create ()
     //status
     statusText = this.add.text(16,84, 'lives left : ' + livesLeft, { fontSize: '32px', fill: '#fff' });
 
-
-
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
     this.physics.add.collider(stars, platforms);
@@ -194,9 +191,7 @@ function collectStar (player, star)
     {
         //  A new batch of stars to collect
         stars.children.iterate(function (child) {
-
             child.enableBody(true, child.x, 0, true, true);
-
         });
 
         var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
@@ -209,24 +204,17 @@ function collectStar (player, star)
     }
 }
 
-function hitBomb (player, bomb)
+function hitBomb (player)
 {
     livesLeft--;
- 
-     
-     statusText.setText ("lives left : " + livesLeft);
+    statusText.setText ("lives left : " + livesLeft);
 
     if (livesLeft <= 0)
     {
         this.physics.pause();
-
         player.setTint(0xff0000);
-
         player.anims.play('turn');
-
-
-    gameOver = true;
-    
+        gameOver = true;
     }
 }
 
