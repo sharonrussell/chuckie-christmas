@@ -16,8 +16,8 @@
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     physics: {
         default: 'arcade',
         arcade: {
@@ -60,8 +60,8 @@ function create ()
     livesLeft = 3;
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
-    this.add.image(700, 70, 'santa');
-    cage = this.add.image(700, 70, 'cage');
+    this.add.image(900, 70, 'santa');
+    cage = this.add.image(900, 70, 'cage');
 
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -69,12 +69,13 @@ function create ()
 
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    platforms.create(400, 598, 'ground').setScale(4).refreshBody();
+    platforms.create(400, 798, 'ground').setScale(4).refreshBody();
 
     //  Now let's create some ledges
-    platforms.create(600, 400, 'platform');
+    platforms.create(600, 450, 'platform');
     platforms.create(300, 250, 'platform');
-    platforms.create(750, 220, 'platform');
+    platforms.create(750, 300, 'platform');
+    platforms.create(750, 600, 'platform');
 
     // The player and its settings
     player = this.physics.add.sprite(100, 450, 'dude');
@@ -147,7 +148,7 @@ function update ()
 {
     if (gameOver)
     {
-        gameOverText = this.add.text(16,550, 'Game Over - You ruined christmas :-(', { fontSize: '32px', fill: '#ff0044' });
+        gameOverText = this.add.text(16,750, 'Game Over - You ruined christmas :-(', { fontSize: '32px', fill: '#ff0044' });
         return;
     }
 
@@ -176,7 +177,7 @@ function update ()
     }
 
     if(score >= 500){
-        youWinText = this.add.text(16,550, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#0b6623' });
+        youWinText = this.add.text(16,750, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#0b6623' });
         this.physics.pause();
 
 
