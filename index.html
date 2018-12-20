@@ -51,6 +51,7 @@ function preload ()
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/Snowball.png');
     this.load.image('santa', 'assets/santa.png');
+    this.load.image('cage', 'assets/cage.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
@@ -60,6 +61,8 @@ function create ()
     //  A simple background for our game
     this.add.image(400, 300, 'sky');
     this.add.image(700, 70, 'santa');
+    cage = this.add.image(700, 70, 'cage');
+
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = this.physics.add.staticGroup();
@@ -173,10 +176,11 @@ function update ()
     }
 
     if(score >= 1000){
-        youWinText = this.add.text(16,550, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#fff' });
+        youWinText = this.add.text(16,550, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#0b6623' });
         this.physics.pause();
-              player.setTint(0x0000);
 
+
+        cage.destroy();
         player.anims.play('turn');
         return;
     }
