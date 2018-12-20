@@ -46,7 +46,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     this.load.image('sky', 'assets/snowsky.png');
-    this.load.image('ground', 'assets/snowplatform.png');
+    this.load.image('ground', 'assets/snowbaseplatform.png');
     this.load.image('platform', 'assets/snowplatform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/Snowball.png');
@@ -175,7 +175,7 @@ function update ()
         player.setVelocityY(-330);
     }
 
-    if(score >= 1000){
+    if(score >= 500){
         youWinText = this.add.text(16,550, 'Well done, you saved christmas! :-)', { fontSize: '32px', fill: '#0b6623' });
         this.physics.pause();
 
